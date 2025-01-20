@@ -53,7 +53,7 @@ def make_grids(min_a, max_a, n_a, beta_hi, dbeta, omega, q):
 def income(wN_aftertax, N, e_grid, Tr_lumpsum, Tax_richest, zeta, pi_pdf):
     # Auclert-Rognlie 2020 incidence function for labor income, with cyclicality parameter zeta
     # in default case with zeta = 0, this is just gamma / N = 1 and irrelevant
-    gamma_N = e_grid ** (zeta * np.log(N)) / np.vdot(e_grid ** (zeta * np.log(N)), pi_pdf)
+    gamma_N = e_grid ** (zeta * np.log(N)) / np.vdot(e_grid ** (1 + zeta * np.log(N)), pi_pdf)
     
     # net after-tax income (include lump-sum transfer option)
     y = wN_aftertax * e_grid * gamma_N + Tr_lumpsum
